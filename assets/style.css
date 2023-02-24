@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navbar-collapse{
+    flex-grow: 0 !important;
+}
+.logo{
+    width: 10rem;
+}
+.carousel-inner img{
+    height: 20rem;
+    object-fit: cover;
+}
+main{
+    background: linear-gradient(rgba(123, 124, 128, 0.733),rgba(1, 29, 34, 0.753)),url(../images/fondos/pngtree-cosmic-galaxy-gradient-background-picture-image_1309028.jpg);
+    background-size: cover;
+    min-height: 90vh;
+}
+.carousel-caption{
+    bottom: auto !important;
+}
+
+.icono-redSocial{
+    width: 3rem;
+}
+footer{
+    padding: 1rem;
+}
+
+
+#image-info{
+    height: 23rem;
+}
+.card-body{
+    flex: 0.5 !important ;
+    
+}
+
+#card-info{
+    flex-direction: row !important;
+}
