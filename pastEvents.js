@@ -15,9 +15,10 @@ function crearTarjeta(array){
 function pintarTarjetas( array, elemento ){
     let template = ''
     for( let carta of array ){
+        if(carta.date>=data.currentDate){
         template += crearTarjeta( carta )
+        }
     }
     elemento.innerHTML = template
 }
 pintarTarjetas(data.events,$section);
-
