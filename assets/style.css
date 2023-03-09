@@ -41,3 +41,12 @@ footer{
 #card-info{
     flex-direction: row !important;
 }
+#card-info img{
+    width: 30rem;
+}
+
+/* ---------- contacto ---------- */
+
+.boxi{
+    width: 50rem;
+}
