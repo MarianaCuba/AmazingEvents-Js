@@ -16,6 +16,9 @@ function crearTarjeta(array){
 
 function pintarTarjetas( array, elemento ){
     let template = ''
+    if(array == 0){
+        template = mensajeAlerta()
+    }
     for( let carta of array ){
         if(carta.date>=data.currentDate){
         template += crearTarjeta( carta )
@@ -25,7 +28,10 @@ function pintarTarjetas( array, elemento ){
 }
 
 
-
+//creacion del mensaje a mostrar si el buscador no encuentra nada.
+function mensajeAlerta(){
+    return`<h2 class="text-black"> Search is not found </h2>`
+}
 // crear lista de categorias:
 
 const listaCategorias = Array.from(new Set (data.events.map(category=> category.category)))

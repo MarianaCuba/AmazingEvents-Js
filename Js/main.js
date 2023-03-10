@@ -28,7 +28,7 @@ function pintarTarjetas( array, elemento ){
 
 //cree una funcion para el mensaje en caso de que la busqueda requerida no se encuentre
 function mensajeAlerta(){
-    return`<h2> Search is not found </h2>`
+    return`<h2 class="text-black"> Search is not found </h2>`
 }
 // crear lista de categorias:
 
