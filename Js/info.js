@@ -4,11 +4,22 @@ console.log([document])
 
 const params = new URLSearchParams(location.search)
 
-const id = params.get("id") // id que no extraemos del data
+const id = params.get("id") // id que nos extraemos del data
 
 //comparar id de url con el id de la data
 
-let evento = data.events.find(element => element._id === id)
+
+function datoUrlInfo(){
+  fetch ("https://mindhub-xj03.onrender.com/api/amazing")
+  .then(response => response.json())
+  .then(dato => { console.log(dato)
+  let evento = dato.events.find(element => element._id == id)
+  crearCardInfo(evento)
+  colocarTarjetaInfo(evento, cardInfo)
+  
+  })
+}
+datoUrlInfo()
 
 // creacion de la tarjeta de descripcion 
 function crearCardInfo(events){
@@ -35,5 +46,5 @@ function colocarTarjetaInfo(event, element){
 }
 
 // llamo a la funcion 
-colocarTarjetaInfo(evento, cardInfo)
+// colocarTarjetaInfo(evento, cardInfo)
 

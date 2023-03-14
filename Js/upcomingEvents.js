@@ -2,6 +2,29 @@ const $section= document.getElementById("section")
 const CheckBoxContainer = document.getElementById("check")
 
 
+
+function datosDeURl (){
+    fetch ("https://mindhub-xj03.onrender.com/api/amazing")
+    .then(response => response.json())
+    .then(dato => { console.log(dato)
+        const listaCategorias = Array.from(new Set (dato.events.map(category=> category.category)))
+        const filtroEventosFuturos = dato.events.filter(evento => evento.date>dato.currentDate)
+        crearTarjeta(filtroEventosFuturos)
+        pintarTarjetas(filtroEventosFuturos,$section);
+        console.log(filtroEventosFuturos)
+        CheckBoxContainer.innerHTML += categorias(listaCategorias)
+        inputSearch.addEventListener("keyup", e=> pintarTarjetas(filtroCruzado(filtroEventosFuturos), $section))
+        CheckBoxContainer.addEventListener("change", e => pintarTarjetas(filtroCruzado(filtroEventosFuturos),$section))
+        
+    })
+    .catch(error => console.log(error))
+
+}
+ datosDeURl()
+
+
+
+
 function crearTarjeta(array){
     return `
     <div class="card" style="width: 20rem;">
@@ -19,10 +42,11 @@ function pintarTarjetas( array, elemento ){
     if(array == 0){
         template = mensajeAlerta()
     }
+    
     for( let carta of array ){
-        if(carta.date<=data.currentDate){
-        template += crearTarjeta( carta )
-        }
+       
+      template += crearTarjeta( carta )
+       
     }
     elemento.innerHTML = template
 }
@@ -34,24 +58,24 @@ function mensajeAlerta(){
 }
 // crear lista de categorias:
 
-const listaCategorias = Array.from(new Set (data.events.map(category=> category.category)))
-console.log(listaCategorias)
+// const listaCategorias = Array.from(new Set (data.events.map(category=> category.category)))
+// console.log(listaCategorias)
 
 //crear check
 
-const categorias= listaCategorias.reduce((acc, category) => acc += `<div class="form-check me-3">
+const categorias=(arrayCategorias) => {return arrayCategorias.reduce((acc, category) => acc += `<div class="form-check me-3">
     <input class="form-check-input" type="checkbox" value="${category}" id="${category}">
      <label class="form-check-label" for="${category}">
        ${category}
      </label>
-   </div>`,"")
+   </div>`,"")}
 
-CheckBoxContainer.innerHTML += categorias
-console.log(categorias)
+// CheckBoxContainer.innerHTML += categorias
+// console.log(categorias)
 
 //crear evento a las categorias
 
-CheckBoxContainer.addEventListener("change", e => pintarTarjetas(filtroCheckbox(data.events),$section))
+// CheckBoxContainer.addEventListener("change", e => pintarTarjetas(filtroCruzado(data.events),$section))
 
 
 //filtro de checkbox
@@ -69,9 +93,9 @@ function filtroCheckbox(lista){
      return listaFiltro
 }
 
-pintarTarjetas(data.events,$section);
+// pintarTarjetas(data.events,$section);
 
-inputSearch.addEventListener("keyup", e=> pintarTarjetas(filtroCruzado(data.events),$section))
+// inputSearch.addEventListener("keyup", e=> pintarTarjetas(filtroCruzado(data.events),$section))
 
 // Filtro del texto ingresado en el buscador, lova a tomar en minuscula y va a guardar su valor
 function filtroSearch (listaArray){
@@ -85,8 +109,8 @@ function filtroSearch (listaArray){
   }
 
   // funcion de filtros cruzados que convina ambos filtros al momento de la busqueda.
-function filtroCruzado(){
-    return filtroCheckbox(filtroSearch(data.events))
+function filtroCruzado(array){
+    return filtroCheckbox(filtroSearch(array))
 }
 
 
